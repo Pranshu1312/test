@@ -56,18 +56,18 @@
         }
         
         /* Custom scrollbar for a better look */
-        textarea::-webkit-scrollbar {
+        textarea::-webkit-scrollbar, pre::-webkit-scrollbar {
             width: 8px;
         }
-        textarea::-webkit-scrollbar-track {
+        textarea::-webkit-scrollbar-track, pre::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
         }
-        textarea::-webkit-scrollbar-thumb {
+        textarea::-webkit-scrollbar-thumb, pre::-webkit-scrollbar-thumb {
             background: rgba(167, 139, 250, 0.6);
             border-radius: 10px;
         }
-        textarea::-webkit-scrollbar-thumb:hover {
+        textarea::-webkit-scrollbar-thumb:hover, pre::-webkit-scrollbar-thumb:hover {
             background: rgba(167, 139, 250, 0.8);
         }
 
@@ -183,10 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'term', label: 'Term (e.g., 5 years)', type: 'text', value: '5 years' }
     ];
 
-    // --- THIS IS THE LINE TO CHANGE ---
+    // --- THIS IS THE CORRECTED LINE ---
     // After deploying your backend to a service like Render,
     // replace the placeholder URL below with your actual live backend URL.
-    const backendUrl = 'https://gdg-hackathon-test.onrender.com';
+    const backendUrl = 'https://gdg-hackathon-test.onrender.com/generate-document';
 
     // For local testing, you can comment out the line above and use this one:
     // const backendUrl = 'http://127.0.0.1:5000/generate-document';
