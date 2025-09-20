@@ -1,0 +1,62 @@
+CONFIDENTIALITY AND NON-DISCLOSURE AGREEMENT
+
+This Non-Disclosure Agreement (the "Agreement") is entered into as of [Effective Date] (the "Effective Date"), by and between:
+
+Disclosing Party: [Disclosing Party Name], with its principal place of business at [Disclosing Party Address] ("Disclosing Party").
+
+and
+
+Receiving Party: [Receiving Party Name], with its principal place of business at [Receiving Party Address] ("Receiving Party").
+
+The Disclosing Party and the Receiving Party are sometimes referred to herein individually as a "Party" and collectively as the "Parties."
+
+RECITALS
+
+WHEREAS, the Disclosing Party possesses certain confidential and proprietary information that it wishes to share with the Receiving Party for the purpose of [Purpose of Disclosure, e.g., "evaluating a potential business relationship"]; and
+
+WHEREAS, the Receiving Party is willing to receive such confidential information subject to the terms and conditions of this Agreement.
+
+NOW, THEREFORE, in consideration of the mutual covenants contained herein, the Parties agree as follows:
+
+DEFINITION OF CONFIDENTIAL INFORMATION
+"Confidential Information" shall mean any and all technical and non-technical information provided by the Disclosing Party to the Receiving Party, including but not limited to: (a) patents and patent applications, (b) trade secrets, and (c) proprietary information, including but not limited to research, development, products, services, finances, customer lists, marketing and business plans, and operations. Confidential Information may be disclosed in writing, orally, or by any other means.
+
+OBLIGATIONS OF RECEIVING PARTY
+The Receiving Party agrees to:
+(a) Hold the Confidential Information in strict confidence and to take all reasonable precautions to protect such Confidential Information.
+(b) Not disclose any Confidential Information to any third party without the prior written consent of the Disclosing Party.
+(c) Use the Confidential Information solely for the purpose described in the Recitals of this Agreement.
+(d) Not copy or reverse engineer any Confidential Information.
+
+EXCLUSIONS FROM CONFIDENTIAL INFORMATION
+The obligations of the Receiving Party under this Agreement shall not apply to information that:
+(a) Was in the public domain at the time of disclosure or subsequently becomes part of the public domain through no fault of the Receiving Party.
+(b) Was rightfully in the Receiving Party’s possession prior to disclosure by the Disclosing Party.
+(c) Is independently developed by the Receiving Party without use of or reference to the Disclosing Party's Confidential Information.
+
+TERM AND TERMINATION
+The confidentiality obligations of this Agreement shall remain in effect for a period of [Term of Agreement, e.g., "five (5) years"] from the Effective Date. The Receiving Party's duty to protect the Confidential Information shall survive the termination of this Agreement.
+
+RETURN OF CONFIDENTIAL INFORMATION
+Upon termination of this Agreement or upon the Disclosing Party’s written request, the Receiving Party shall promptly return or destroy all documents and materials (and all copies thereof) containing the Confidential Information.
+
+GOVERNING LAW AND JURISDICTION
+This Agreement shall be governed by and construed in accordance with the laws of [Governing Law, e.g., "the State of Maharashtra, India"]. Any legal action or proceeding arising under this Agreement will be brought exclusively in the federal or state courts located in [Jurisdiction, e.g., "Mumbai, Maharashtra"], and the Parties hereby consent to the personal jurisdiction and venue therein.
+
+NO LICENSE
+Nothing in this Agreement is intended to grant any rights to the Receiving Party under any patent, trademark, copyright, or other intellectual property right of the Disclosing Party.
+
+REMEDIES
+The Receiving Party acknowledges that any breach of this Agreement may cause irreparable harm to the Disclosing Party for which monetary damages would be inadequate. Therefore, the Disclosing Party shall be entitled to seek injunctive relief to enforce this Agreement, in addition to any other remedies available at law or in equity.
+
+IN WITNESS WHEREOF, the Parties have executed this Agreement as of the Effective Date.
+
+DISCLOSING PARTY:
+By: _________________________
+Name: [Name of Signatory for Disclosing Party]
+Title: [Title of Signatory]
+
+RECEIVING PARTY:
+By: _________________________
+Name: [Name of Signatory for Receiving Party]
+Title: [Title of Signatory]
