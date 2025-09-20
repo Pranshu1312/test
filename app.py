@@ -16,46 +16,57 @@ import os
 # ==============================================================================
 def initialize_rag_pipeline():
     """
-    Initializes the RAG pipeline by loading templates and setting up the vector store.
+    Initializes the RAG pipeline with detailed logging for debugging.
     """
-    print("Initializing RAG pipeline...")
-    # This prevents a fork-related warning when running with Flask's reloader
+    print("--- [START] RAG Pipeline Initialization ---")
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
     
+    print("Step 1: Loading documents from 'templates/' directory...")
     loader = DirectoryLoader('templates/', glob="**/*.txt", show_progress=True)
     documents = loader.load()
+    print(f"Step 1 SUCCESS: Loaded {len(documents)} document(s).")
 
     if not documents:
-        print("Error: No document templates found in the 'templates' directory.")
-        # Raise an error to stop the app if no templates are available
-        raise FileNotFoundError("No document templates found in the 'templates' directory.")
+        raise FileNotFoundError("Critical Error: No document templates found in 'templates/' directory.")
 
+    print("Step 2: Splitting documents into chunks...")
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     texts = text_splitter.split_documents(documents)
+    print(f"Step 2 SUCCESS: Split documents into {len(texts)} chunks.")
+
+    print("Step 3: Initializing embeddings model (this may take a moment)...")
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    print("Step 3 SUCCESS: Embeddings model initialized.")
+
+    print("Step 4: Creating Chroma vector store...")
     vector_store = Chroma.from_documents(texts, embeddings)
-    print("RAG pipeline initialized successfully!")
+    print("Step 4 SUCCESS: Vector store created.")
+    
+    print("--- [SUCCESS] RAG Pipeline Initialized ---")
     return vector_store.as_retriever(search_kwargs={"k": 3})
 
 # ==============================================================================
 #  Step 3: Set up the Flask App
 # ==============================================================================
+print("--- [START] Application Setup ---")
 app = Flask(__name__)
-# Enable CORS to allow requests from your frontend
 CORS(app)
 
 retriever = initialize_rag_pipeline()
 
-# --- IMPORTANT ---
-# For deployment, it's best practice to load this key from an environment variable.
-# Example: google_api_key = os.getenv("GOOGLE_API_KEY")
-google_api_key = "AIzaSyBgO9W4FUknwDg0DFNBdDxXSKXGTQo_9iI"
+print("Step 5: Configuring Google Gemini API...")
+google_api_key = os.environ.get("GOOGLE_API_KEY")
 
 if not google_api_key:
+    print("CRITICAL ERROR: GOOGLE_API_KEY environment variable not found!")
     raise ValueError("GOOGLE_API_KEY is not set!")
+else:
+    # Print a safe confirmation that the key was loaded
+    print("Step 5 SUCCESS: GOOGLE_API_KEY loaded successfully (ends with '...{}').".format(google_api_key[-4:]))
 
-# Use a known working and powerful model
+print("Step 6: Initializing Gemini LLM...")
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.3, google_api_key=google_api_key)
+print("Step 6 SUCCESS: Gemini LLM initialized.")
 
 # ==============================================================================
 #  Step 4: Define the Document Generation Logic
@@ -74,8 +85,8 @@ def generate_document():
 
         prompt_template = """
         You are an expert legal assistant. Your task is to draft a professional and accurate {document_type}.
-        Use the following retrieved legal clauses and user-provided details to draft the document.
-        Ensure that the document is well-structured, coherent, and legally sound. Fill in the user details in the appropriate places.
+        Use the retrieved legal clauses and user-provided details to draft the document.
+        Fill in the user details in the appropriate places.
         **Retrieved Legal Clauses:**
         {retrieved_context}
         **User-Provided Details:**
@@ -98,18 +109,17 @@ def generate_document():
         return jsonify({"generated_document": response.content})
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        print(f"An error occurred during generation: {e}")
         return jsonify({"error": "Failed to generate document"}), 500
 
 # ==============================================================================
-#  Step 5: Run the Flask App with Production-Ready Settings
+#  Step 5: Run the Flask App
 # ==============================================================================
 if __name__ == '__main__':
-    # Render will set the PORT environment variable.
-    # We default to 5000 for local development.
-    port = int(os.environ.get('PORT', 5000))
-    
-    # The host '0.0.0.0' makes the server publicly available.
-    # use_reloader=False prevents a known conflict with the tokenizers library.
-    app.run(host='0.0.0.0', port=port, debug=True, use_reloader=False)
+    print("--- [START] Flask Server ---")
+    # Render provides the PORT environment variable.
+    port = int(os.environ.get('PORT', 10000))
+    print(f"Attempting to bind to 0.0.0.0 on port {port}...")
+    # Use debug=False for production environments
+    app.run(host='0.0.0.0', port=port, debug=False)
 
